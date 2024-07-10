@@ -30,8 +30,8 @@ describe('tasks management', () => {
         //     console.log(value)+
         // })
         // cy.contains("Add Task").click()
-   
-        for(let i=0; i<5;i++){
+   let e=0;
+        for(let i=0; i<8;i++){
            
             cy.contains("Add Task").click();
             cy.get('#title').type(`${i+2} task`)
@@ -41,9 +41,11 @@ describe('tasks management', () => {
                 
             })
             cy.contains("Add Task").click();
-            cy.get('.task-list').children().should('have.length.gte',i+1)
+            cy.get(".task").eq(i+1).contains(`this is my ${i+2} task which is less important`)
+            e++
         };
-      
+        
+        cy.get('.task-list').children().should('have.length.gte',e+1)
         
         // cy.contains("Add Task").click();
         // cy.get('#title').type("second task")
